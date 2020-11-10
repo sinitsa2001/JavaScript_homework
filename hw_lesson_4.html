@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home_work_lesson_4 by JS</title>
+</head>
+<body>
+<script>
+    'use strict';
+    // 1. Написать функцию, преобразующую число в объект. Передавая на вход число от 0 до 999,
+    // мы должны получить на выходе объект, в котором в соответствующих свойствах описаны единицы, десятки и сотни. Например,
+    // для числа 245 мы должны получить следующий объект: {‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2}.
+    // Если число превышает 999, необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект.
+    //  Решение:
+    let x = {
+        hundr: 0,
+        dec: 0,
+        unit: 0
+    };
+
+    function numObj(number) {
+        if (a > 999) {
+            console.log("число больше 999");
+            document.write("число больше 999<br>");
+
+        } else {
+            x.hundr = Math.floor(number / 100);
+            x.dec = Math.floor((number % 100) / 10);
+            x.unit = number % 10;
+
+        }
+        return x;
+    }
+
+    let a = parseInt(prompt("Ввведите число от 0 до 999"));
+    console.log(numObj(a));
+    document.write("Сотни: " + x.hundr + " десятки:" + x.dec + " единицы: " + x.unit);
+
+    //3.Продолжить работу с интернет-магазином:
+    // 3.1. В прошлом домашнем задании вы реализовали корзину на базе массивов. Какими объектами можно заменить их элементы?
+    // 3.2. Реализуйте такие объекты.
+    // 3.3. Перенести функционал подсчета корзины на объектно-ориентированную базу.
+    let cart = {
+        products: [],
+        add(product) {
+            this.products.push(product);
+        },
+        sum() {
+            let sum = 0;
+            for (let index in this.products) {
+                sum += this.products[index].price * this.products[index].count;
+            }
+            return sum;
+        }
+    }
+
+    function Product(make, model, price, count) {
+        this.make = make;
+        this.model = model;
+        this.price = price;
+        this.count = count;
+    }
+
+    let guitar = new Product('Jackson', 'SoloistPro', 1800, 9);
+    cart.add(guitar);
+
+    cart.add(new Product('Fender', 'Strat', 1200, 4));
+    cart.add(new Product('Gibson', 'Les Paul', 1600, 2));
+    console.log(cart);
+    console.log(cart.sum());
+
+
+</script>
+</body>
+</html>

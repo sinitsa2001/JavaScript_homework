@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+ <link rel="stylesheet" href="chessBoard.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<script>
+'use strict';
+
+    // Создали заголовок и параграф (ну и контейнер для шахматной доски)
+
+    var container = document.createElement("div");
+    container.className = "container";
+    container.id = "container";
+    container.innerHTML = "<h1>Шахматная доска</h1>";
+
+    document.body.appendChild(container); // выводим контейнер
+
+    var chessBoard = document.createElement("div");
+    chessBoard.className = "chessBoard";
+    chessBoard.id = "chessBoard";
+    chessBoard.innerHTML = "";
+    container.appendChild(chessBoard); // добавляем деку к контейнеру
+
+    var i,j, chessBoard__cell,letterName;
+    for (i = 9; i >= 0; i--) { // стартуем цикл для строк (10 строк, 8 для клеток + 2 для надписей)
+
+        for (j=0; j < 10; j++) { // стартуем цикл для ячеек (10 ячеек в каждой строке)
+
+            chessBoard__cell = document.createElement("div");
+            chessBoard__cell.className = "chessBoard__cell";
+            chessBoard__cell.id = "" + i + j; // присваиваем индекс каждой созданной ячейке
+
+//          chessBoard__Cell.innerHTML = i + " " + j; // подписываем индекс к каждой ячейке
+
+            if (j === 0 || j === 9 || i === 9 || i === 0) { // если мы НА полях, ТО
+
+                // индексы клеток на полях не проставляем
+                // но нужн проставить названия строк и столбцов
+
+                if ((j === 0 || j === 9) && (i !== 0 && i !== 9)) {
+                    chessBoard__cell.className += " chessBoard__cell_index";
+                    chessBoard__cell.innerHTML = " "+ i ;
+                }
+                else if ((i === 0 || i === 9) && (j !== 0 && j !== 9)) {
+
+                    switch(j) {
+                        case 1: letterName = "A";
+                            break;
+                        case 2: letterName = "B";
+                            break;
+                        case 3: letterName = "C";
+                            break;
+                        case 4: letterName = "D";
+                            break;
+                        case 5: letterName = "E";
+                            break;
+                        case 6: letterName = "F";
+                            break;
+                        case 7: letterName = "G";
+                            break;
+                        case 8: letterName = "H";
+                            break;
+                    }
+
+                    chessBoard__cell.className += " chessBoard__cell_index";
+                    chessBoard__cell.innerHTML = " "+ letterName ; // подписываем имена в поля A, B, C, D, E, F
+
+                }
+
+            }
+            else { // работаем по ячейкам
+
+
+
+
+                if ((i+j)%2 === 0) { // определяем черные и белые ячейки
+                    chessBoard__cell.className += " chessBoard__cell_black";
+                }
+                else {
+                    chessBoard__cell.className += " chessBoard__cell_white";
+                }
+
+                // только для индексирования элементов, где i - название строки (номер), а j - название столбца (буква)
+                // chessBoard__cell.innerHTML = "i: " + i + ", j: " + j; // подписываем индекс к каждой ячейке
+
+
+                if (i === 2) {
+                    chessBoard__cell.innerHTML = "<div class='chessBoard__figure'>&#9817;</div>";
+                }
+                else if (i === 1) {
+                    if (j === 1 || j === 8) {
+                       chessBoard__cell.innerHTML = "<div class='chessBoard__figure'>&#9814;</div>";
+                    }
+                    else if (j === 2 || j === 7) {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure'>&#9816;</div>";
+                    }
+                    else if (j === 3 || j === 6) {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure'>&#9815;</div>";
+                    }
+                    else if (j === 4) {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure'>&#9813;</div>";
+                    }
+                    else {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure'>&#9812;</div>";
+                    }
+                }
+
+                else if (i === 7) {
+                    chessBoard__cell.innerHTML = "<div class='chessBoard__figure_black'>&#9817;</div>";
+                }
+                else if (i === 8) {
+                    if (j === 1 || j === 8) {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure_black'>&#9814;</div>";
+                    }
+                    else if (j === 2 || j === 7) {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure_black'>&#9816;</div>";
+                    }
+                    else if (j === 3 || j === 6) {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure_black'>&#9815;</div>";
+                    }
+                    else if (j === 4) {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure_black'>&#9813;</div>";
+                    }
+                    else {
+                        chessBoard__cell.innerHTML = "<div class='chessBoard__figure_black'>&#9812;</div>";
+                    }
+                }
+
+            }
+
+            chessBoard.appendChild(chessBoard__cell);
+        }
+
+    }
+</script>
+
+
+
+</body>
+</html>
